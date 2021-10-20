@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CoffeeMachineOOP", "CoffeeMachineOOP\CoffeeMachineOOP.pyproj", "{A229287C-87C6-4242-9015-F6E6B26B7AAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A229287C-87C6-4242-9015-F6E6B26B7AAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A229287C-87C6-4242-9015-F6E6B26B7AAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0E1303D2-A385-4C63-AD1A-37A002781F16}
+	EndGlobalSection
+EndGlobal
