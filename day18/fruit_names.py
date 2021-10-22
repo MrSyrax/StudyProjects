@@ -1,0 +1,1 @@
+fruits = [{'fruits':'apple', 'cost':2},{'fruits':'orange', 'cost':3}]
