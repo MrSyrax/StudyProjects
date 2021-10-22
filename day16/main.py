@@ -39,8 +39,3 @@ while  more_coffe:
         print("thank you enjoy your {user_choice}")
         more_coffe = False
     
-    
-
-#how to put it all together.
-
->>>>>>> 7cba774d7b86f6fb2bdd98cdd02405ff775d93d1
