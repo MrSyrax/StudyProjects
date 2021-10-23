@@ -31,6 +31,6 @@ for _ in range(600):
 
 
 
-screen = Screen()
+screen = tim.Screen()
 screen.exitonclick()
 
