@@ -1,40 +1,30 @@
-from turtle import Turtle, Screen, back, forward, left, right
+import turtle as t
 import random
 
-colors = ['red','green','blue','gold','pink','purple','orange','lime','CornflowerBlue', 'DarkOrchid', 'IndianRed', 'DeepSkyBlue', "LightSeaGreen", "wheat", "SlateGray", "SeaGreen"]
 
-
-tim = Turtle()
+t.colormode(255)
+tim = t.Turtle()
 tim.shape('turtle')
-tim.color('blue')
 tim.pensize(10)
-tim.speed(10)
+tim.speed(0)
+
+def random_color():
+    r = random.randint(0,255)
+    g = random.randint(0,255)
+    b = random.randint(0,255)
+    return r,g,b
+
+colors = random_color()
+directions = [0,90,180,270]
+
+ 
+
+for _ in range(600):
+    tim.color(random_color())
+    tim.forward(30)
+    tim.setheading(random.choice(directions))
 
 
-dict_of_methods = [
-    'forward',
-    'right',
-    'left',
-    'backward'
-]
-
-
-shape = 0
-
-while shape <=200:
-    choice = random.choice(dict_of_methods)
-    tim.pencolor(random.choice(colors))
-    if choice == 'forward':
-        tim.forward(30)
-    elif choice == 'left':
-        tim.left(90)
-        tim.forward(30)
-    elif choice == 'right':
-        tim.right(90)
-        tim.forward(30)
-    else:
-        tim.back(30)
-    shape+=1
 
 
 
