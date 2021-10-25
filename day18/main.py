@@ -1,6 +1,7 @@
 import colorgram
+import turtle as t
+import random
 
-<<<<<<< HEAD
 color_list = [(249, 243, 247), (1, 12, 31), (53, 25, 17), (218, 127, 106), (10, 104, 159), (242, 213, 68), 
 (149, 83, 39), (215, 87, 63), (155, 6, 24), (165, 162, 31), (157, 62, 102), (10, 64, 33), (206, 74, 104), 
 (11, 96, 57), (95, 6, 20), (174, 135, 163), 
@@ -11,6 +12,7 @@ color_list = [(249, 243, 247), (1, 12, 31), (53, 25, 17), (218, 127, 106), (10, 
 tim = t.Turtle()
 tim.speed(10)
 t.colormode(255)
+tim.hideturtle()
 tim.penup()
 y = 0 
 
@@ -28,8 +30,3 @@ for _ in range(10):
 screen = t.Screen()
 screen.exitonclick()
 
-=======
-colors = colorgram.extract('hirst_painting.jpg', 6)
-
-print(colors)
->>>>>>> 24dce17ee10d595450f61bc44fbbd175eeddb55d
