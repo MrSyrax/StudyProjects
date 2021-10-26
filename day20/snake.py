@@ -19,8 +19,9 @@ class Snake:
             new_square.penup()
             new_square.goto(position)
             self.segments.append(new_square)
-
+            
         self.head = self.segments[0]
+
     def move(self):
         for seg_num in range(len(self.segments) -1, 0, -1):
             new_xcor = self.segments[seg_num - 1].xcor()
