@@ -15,3 +15,33 @@ class Scoreboard(Turtle):
         self.write(f'{self.score}',font=('Arial', 40, 'bold'))
         
     
+    def player_won(self):
+        self.color('white')
+
+
+class Line(Turtle):
+    def __init__(self):
+        super().__init__()
+        
+        self.step = 0
+        self.shape('square')
+        self.pensize(10)
+        self.color('white')
+        self.penup()
+        self.goto(0,300)
+        self.setheading(270)
+
+    def write_line(self):
+        for _ in range(0,100):
+            self.forward(40)
+            self.pendown()
+            self.forward(40)
+            self.penup()
+            
+
+            
+
+
+        
+        
+        

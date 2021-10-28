@@ -1,11 +1,12 @@
 from turtle import Screen, Turtle
 from paddle import Paddle
 from ball import Ball
-from scoreboard import Scoreboard
+from scoreboard import Scoreboard, Line
 import time
 import turtle
 
-WINNING_AMOUNT = 1
+WINNING_AMOUNT = 4
+
 
 screen = Screen()
 screen.setup(width=800, height=600)
@@ -18,7 +19,8 @@ r_paddle = Paddle(( 350,0))
 l_paddle = Paddle((-350,0))
 
 r_score_board = Scoreboard((100,230))
-l_score_board = Scoreboard((-100,230))
+l_score_board = Scoreboard((-140,230))
+
 ball = Ball()
 screen.listen()
 screen.onkey(r_paddle.go_up, 'Up')
@@ -26,17 +28,23 @@ screen.onkey(r_paddle.go_down, 'Down')
 screen.onkey(l_paddle.go_up, 'w')
 screen.onkey(l_paddle.go_down, 's')
 
+line = Line()
+line.write_line()
+sleep_time = 0.06
 
 game_is_on = True
 while game_is_on:
-    time.sleep(0.1)
+    time.sleep(sleep_time)
     screen.update()
     ball.move_ball()
+    line.write_line()
 
     if ball.ycor() > 280 or ball.ycor() < -280:
         ball.bounce_y()
     if ball.distance(r_paddle) < 50 and ball.xcor() > 325 or ball.distance(l_paddle) < 50 and ball.xcor() < -325:
         ball.bounce_x()
+        if sleep_time >= 0.01:
+            sleep_time-=0.01
     
     if ball.xcor() > 400:
         l_score_board.clear()
@@ -50,10 +58,10 @@ while game_is_on:
 
     if r_score_board.score == WINNING_AMOUNT:
         game_is_on = False
-        l_score_board.write('Left Player WON!')
+        
     elif l_score_board.score == WINNING_AMOUNT:
         game_is_on = False
-        r_score_board.write('Left Player WON!')
+        
     
 
 
