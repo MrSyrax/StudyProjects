@@ -36,19 +36,17 @@ while game_is_on:
     #check if player made contact with any of the cars
     for cars in car.cars_list:
 
-        if player.distance(cars) < 22:
+        if player.distance(cars) < 20:
             game_is_on = False
             scoreboard.player_lost()
 
 
 
     #check if the player has reached the top of the screen.
-    if player.ycor() > 250:
+    if player.ycor() > 270:
         player.reset_player()
-        if car.car_speed != 'fastest':
-            counter+=1
-            car.car_speed = cars_speed[counter]
-            scoreboard.update_score()
+        car.car_speed *= .9
+        scoreboard.update_score()
 
 
 

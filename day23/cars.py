@@ -1,12 +1,12 @@
 from turtle import Turtle
 import random
 
-COLORS = ['red','blue','yellow']
+COLORS = ['red','blue','orange','green']
 'fastest','fast', 'normal','slow' 
 
 class Car:
     def __init__(self):
-        self.car_speed = 'slow'
+        self.car_speed = 0.01
         self.cars_list = []
 
     def create_car(self):

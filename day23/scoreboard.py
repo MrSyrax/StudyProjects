@@ -8,13 +8,13 @@ class ScoreBoard(Turtle):
         self.penup()
         self.hideturtle()
         self.goto(-250,250)
-        self.write(f'Score: {self.current_score}', font=('Arial',20,'bold'))
+        self.write(f'Level: {self.current_score}', font=('Arial',20,'bold'))
 
 
     def update_score(self):
         self.clear()
         self.current_score+=1
-        self.write(f'Score: {self.current_score}', font=('Arial',20,'bold'))
+        self.write(f'Level: {self.current_score}', font=('Arial',20,'bold'))
 
     def player_lost(self):
         self.goto(-60,0)
