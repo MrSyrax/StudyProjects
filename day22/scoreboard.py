@@ -24,7 +24,6 @@ class Line(Turtle):
         super().__init__()
         
         self.step = 0
-        self.shape('square')
         self.pensize(10)
         self.color('white')
         self.penup()
