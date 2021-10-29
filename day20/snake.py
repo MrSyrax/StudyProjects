@@ -11,13 +11,26 @@ RIGHT = 0
 class Snake:
     
     def __init__(self):
+        self.end_game = True
         self.segments = []
-
-        for position in STARTING_POSITIONS:
-            self.add_segment(position)
-            
+        self.create_snake()
         self.head = self.segments[0]
     
+    def create_snake(self):
+        for position in STARTING_POSITIONS:
+            self.add_segment(position)
+    
+    def end(self):
+        self.end_game = False
+
+    def ending(self):
+        ending = Turtle()
+        ending.color('white')
+        ending.hideturtle()
+        ending.penup()
+        ending.goto(-60,0)
+        ending.write('Game Over!',font=('Ariel',20,'bold'))       
+
     def add_segment(self,position):
         new_square = Turtle('square')
         new_square.color('white')
@@ -27,6 +40,14 @@ class Snake:
 
     def extend(self):
         self.add_segment(self.segments[-1].position())
+
+    def reset(self):
+        for seg in self.segments:
+            seg.goto(1000,1000)
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]
+
         
     def move(self):
         for seg_num in range(len(self.segments) -1, 0, -1):
