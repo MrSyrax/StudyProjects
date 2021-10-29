@@ -4,7 +4,7 @@ class ScoreBoard(Turtle):
 
     def __init__(self):
         super().__init__()
-        with open('.././data/data.txt') as file:
+        with open('C:/Users/karey/Documents/Python/data/data.txt') as file:
             self.high_score = int(file.read())
         self.score = 0
         self.penup()
