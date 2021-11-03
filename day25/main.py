@@ -9,6 +9,16 @@ t.shape(image)
 states = pandas.read_csv('C:/Users/karey/Documents/Python/day25/50_states.csv')
 
 
+<<<<<<< HEAD
+# path to data on home pc C:\Users\Kareyo\Documents\Python\StudyProjects\day25\weather_data.csv
+#path to data on gaming pc 'C:/Users/karey/Documents/Python/day25/weather_data.csv'
+data = pandas.read_csv('C:/Users\Kareyo\Documents\Python\StudyProjects\day25\weather_data.csv')   
+
+avg = round(data['temp'].mean())
+max_temp = data['temp'].max()
+
+print(f'average temp for the week is: {avg}\nThe Max temp for the week was: {max_temp}')
+=======
 us_states = states['state'].to_list()
 guessed_states = []
 
@@ -52,3 +62,15 @@ while guessed_states < 50:
 
     user_answer = screen.textinput(title=f'{correct}/{lenth_of_list} States Correct', prompt="What's another state")
 
+<<<<<<< HEAD
+=======
+m_states = {
+    'missed': us_states
+}
+
+missed_states = pandas.DataFrame(m_states)
+missed_states.to_csv('C:/Users/karey/Documents/Python/day25/missed.csv')
+
+print(f'great job, but you missed {us_states}')
+>>>>>>> 3f10f53a1deab949e0dc440c9c175ae9c2ec5f29
+>>>>>>> d2e75dd80f7aacae961c5549b3c76e5b53d9c47e
