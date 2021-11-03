@@ -10,30 +10,35 @@ states = pandas.read_csv('C:/Users/karey/Documents/Python/day25/50_states.csv')
 
 
 us_states = states['state'].to_list()
+guessed_states = []
 
 correct = 0
 user_answer = screen.textinput(title='Guess the State', prompt="guess a state")
-game_is_on = True
-while game_is_on:
-    
+
+while guessed_states < 50:
     user_answer = user_answer.capitalize()
     lenth_of_list = len(us_states)
     
 
     if user_answer == 'Exit':
         game_is_on = False
-        
+
+        missing_states = [state for state in us_states if state not in guessed_states]
+        new_data = pandas.DataFrame(missing_states)
+        new_data.to_csv('C:/Users/karey/Documents/Python/day25/missed.csv')
+        break
 
 
     if user_answer in us_states:
-        us_states.remove(user_answer)
+        guessed_states.append(user_answer)
+       
+        state_name = t.Turtle()
+        state_name.hideturtle()
+        state_name.penup()
         x_and_y = states[states['state'] == user_answer]
         x_of_state = x_and_y['x']
         y_of_state = x_and_y['y']
         correct+=1
-        state_name = t.Turtle()
-        state_name.hideturtle()
-        state_name.penup()
         state_name.goto(int(x_of_state), int(y_of_state))
         state_name.write(user_answer.capitalize())
         
@@ -47,11 +52,3 @@ while game_is_on:
 
     user_answer = screen.textinput(title=f'{correct}/{lenth_of_list} States Correct', prompt="What's another state")
 
-m_states = {
-    'missed': us_states
-}
-
-missed_states = pandas.DataFrame(m_states)
-missed_states.to_csv('C:/Users/karey/Documents/Python/day25/missed.csv')
-
-print(f'great job, but you missed {us_states}')
