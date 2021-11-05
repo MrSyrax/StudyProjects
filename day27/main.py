@@ -1,47 +1,4 @@
 from tkinter import *
-calculation = 0
-
-#what the button does
-def button_clicked():
-    new_text=entry.get()
-    calculation = round(int(new_text)*1.6)
-    km_converted.config(text=calculation)
-
-#create a window
-window = Tk()
-window.title('Mile to Km Converter')
-window.minsize(width=300, height=100)
-window.config(padx=50,pady=30)
-
-
-#create the labels
-miles = Label(text='Miles')
-miles.grid(column=2,row=0)
-is_equal_to = Label(text='is equal to ')
-is_equal_to.grid(column=0,row=1)
-km_converted = Label(text='0')
-km_converted.grid(column=1,row=1)
-km = Label(text='Km')
-km.grid(column=2,row=1)
-
-#create the entry box
-entry = Entry(width=10)
-entry.grid(column=1,row=0)
-
-
-#create the buttoin
-button = Button(text='Calculate', command=button_clicked)
-button.grid(column=1,row=2)
-
-window.mainloop()
-
-
-
-
-
-
-
-
 
 # #Button method
 # def action():
