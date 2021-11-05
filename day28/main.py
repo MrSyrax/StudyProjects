@@ -15,6 +15,13 @@ LONG_BREAK_MIN = 20
 reps = 0
 timer = None
 
+# ---------------------------- set study time ------------------------------- # 
+
+def spinbox_used():
+    global WORK_MIN
+    #gets the current value in spinbox.
+    WORK_MIN = int(spinbox.get())
+
 # ---------------------------- TIMER RESET ------------------------------- # 
 def reset_timer():
     global timer
@@ -26,7 +33,6 @@ def reset_timer():
     canvas.itemconfig(timer_text, text='00:00')
     
     
-
 
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 def start_timer():
@@ -108,5 +114,7 @@ start_button.grid(column=0,row=2)
 reset_button = Button(text='Reset', command=reset_timer)
 reset_button.grid(column=2, row=2)
 
+spinbox = Spinbox(from_=0, to=25, width=5, command=spinbox_used)
+spinbox.grid(column=3,row=0)
 
 window.mainloop()
