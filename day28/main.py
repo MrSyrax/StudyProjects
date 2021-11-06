@@ -114,7 +114,7 @@ start_button.grid(column=0,row=2)
 reset_button = Button(text='Reset', command=reset_timer)
 reset_button.grid(column=2, row=2)
 
-spinbox = Spinbox(from_=0, to=25, width=5, command=spinbox_used)
+spinbox = Spinbox(from_=0, to=60, width=5, command=spinbox_used)
 spinbox.grid(column=3,row=0)
 
 window.mainloop()
