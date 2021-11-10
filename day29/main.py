@@ -41,7 +41,7 @@ def generate_new_pw():
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save_data():
 
-    web = website_entry.get()
+    web = website_entry.get().lower()
     em = email_entry.get()
     pw = password_entry.get()
     new_data = {
@@ -55,18 +55,18 @@ def save_data():
         messagebox.showinfo(title='Oops', message='Please do not leave any fields emtpy')
     else: 
         try:
-            with open('C:/Users/karey/Documents/Python/day29/credentials.json', 'r') as file:
+            with open('C:/Users/Kareyo/Documents/Python/StudyProjects/day29/credentials.json', 'r') as file:
                 #reading old data
                 data = json.load(file)
                 
         except FileNotFoundError:    
-            with open('C:/Users/karey/Documents/Python/day29/credentials.json', 'w') as file:
+            with open('C:/Users/Kareyo/Documents/Python/StudyProjects/day29/credentials.json', 'w') as file:
                 #saving the updated data
                 json.dump(new_data, file, indent=4)
         else:
             #updating old data
             data.update(new_data)
-            with open('C:/Users/karey/Documents/Python/day29/credentials.json', 'w') as file:
+            with open('C:/Users/Kareyo/Documents/Python/StudyProjects/day29/credentials.json', 'w') as file:
                 #saving the updated data
                 json.dump(data, file, indent=4)
         finally:
@@ -77,19 +77,22 @@ def save_data():
 # ---------------------------- SEARCH FOR CREDENTIALS ------------------------------- #
 
 def search():
-    web = website_entry.get()
+    web = website_entry.get().lower()
     if len(web)==0:
         messagebox.showinfo(title='Oops', message='no search given...')
     else:
         try:
-            with open('C:/Users/karey/Documents/Python/day29/credentials.json', 'r') as file:
+            with open('C:/Users/Kareyo/Documents/Python/StudyProjects/day29/credentials.json', 'r') as file:
                 data = json.load(file)
         except FileNotFoundError:
             messagebox.showinfo(title='Oops', message='No Data File Found.')
         else:
-            user_name = data[web]['email']
-            password = data[web]['password']
-            messagebox.showinfo(title='Cerdentials', message=f'Email: {user_name}\nPassword: {password}')
+            if web not in data:
+                messagebox.showinfo(title='Oops', message=f'There are no credentials for {web}.')
+            else:
+                user_name = data[web]['email']
+                password = data[web]['password']
+                messagebox.showinfo(title=web, message=f'Email: {user_name}\nPassword: {password}')
 
 
 
@@ -104,7 +107,7 @@ window.title('Password Manager')
 window.config(padx=50, pady=50)
 
 canvas = Canvas(width=200,height=200)
-lock_image = PhotoImage(file='C:/Users/karey/Documents/Python/day29/logo.png')
+lock_image = PhotoImage(file='C:/Users/Kareyo/Documents/Python/StudyProjects/day29/logo.png')
 canvas.create_image(100,100, image=lock_image)
 canvas.grid(row=0,column=1)
 
