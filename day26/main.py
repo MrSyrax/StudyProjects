@@ -25,19 +25,20 @@
 
 import pandas
 
-phonetic_alphabet = pandas.read_csv('C:/Users/Kareyo/Documents/Python/StudyProjects/day26/nato_phonetic_alphabet.csv')
+phonetic_alphabet = pandas.read_csv('C:/Users/karey/Documents/Python/day26/nato_phonetic_alphabet.csv')
 pa_dict = {code.letter:code.code for (index, code) in phonetic_alphabet.iterrows()}
-
 
 #TODO 2. Create a list of the phonetic code codes from a word that the user inputs.
 
-guessing_names = True
-while guessing_names:
-
+def generate_phonetic():
     user_input = input('Enter a code: ')
+  
     if user_input != 'Exit':
-
-        phonetic_list = [pa_dict[n.upper()] for n in user_input]
-        print(phonetic_list)
-    else:
-        break
+        try:
+            phonetic_list = [pa_dict[n.upper()] for n in user_input]
+        except KeyError:
+            print('pleae only letters in the english alphabet')
+            generate_phonetic()
+        else:
+            print(phonetic_list)
+    

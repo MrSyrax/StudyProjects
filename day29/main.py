@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from random import choice, randint, shuffle
 import pyperclip
+import json
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -28,13 +29,12 @@ def generate_new_pw():
 
     if len(entry_field) == 0:
         password_entry.insert(END,f'{password}')
-        pyperclip.copy(password_entry.get())
-        pyperclip.paste()
+        pyperclip.copy(password_entry.get())  
     else:
         password_entry.delete(0,END)
         password_entry.insert(END,f'{password}')
         pyperclip.copy(password_entry.get())
-        pyperclip.paste()   
+        pyperclip.paste()
 
 
 
@@ -44,17 +44,58 @@ def save_data():
     web = website_entry.get()
     em = email_entry.get()
     pw = password_entry.get()
+    new_data = {
+        web: {
+            'email': em,
+            'password': pw
+            }
+        }
+
     if len(web) == 0 or len(pw)== 0:
         messagebox.showinfo(title='Oops', message='Please do not leave any fields emtpy')
-    else:
-        is_ok = messagebox.askokcancel(title=web, message=f'These are the details entered: \nEmail: {em} '
-                                                    f'\nPassword{pw} \nIs it ok to save?')
-        if is_ok:
-            with open('C:/Users/karey/Documents/Python/day29/credentials.txt', 'a') as file:
-                file.write(f'{web} | {em} | {pw}\n')
+    else: 
+        try:
+            with open('C:/Users/karey/Documents/Python/day29/credentials.json', 'r') as file:
+                #reading old data
+                data = json.load(file)
+                
+        except FileNotFoundError:    
+            with open('C:/Users/karey/Documents/Python/day29/credentials.json', 'w') as file:
+                #saving the updated data
+                json.dump(new_data, file, indent=4)
+        else:
+            #updating old data
+            data.update(new_data)
+            with open('C:/Users/karey/Documents/Python/day29/credentials.json', 'w') as file:
+                #saving the updated data
+                json.dump(data, file, indent=4)
+        finally:
             website_entry.delete(0,END)
             password_entry.delete(0,END)
             website_entry.focus()
+
+# ---------------------------- SEARCH FOR CREDENTIALS ------------------------------- #
+
+def search():
+    web = website_entry.get()
+    if len(web)==0:
+        messagebox.showinfo(title='Oops', message='no search given...')
+    else:
+        try:
+            with open('C:/Users/karey/Documents/Python/day29/credentials.json', 'r') as file:
+                data = json.load(file)
+        except FileNotFoundError:
+            messagebox.showinfo(title='Oops', message='No Data File Found.')
+        else:
+            user_name = data[web]['email']
+            password = data[web]['password']
+            messagebox.showinfo(title='Cerdentials', message=f'Email: {user_name}\nPassword: {password}')
+
+
+
+
+
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 
@@ -75,9 +116,9 @@ password_label = Label(text='Password:')
 password_label.grid(row=3,column=0)
 
 #creates the 'website entry with a width of 52
-website_entry = Entry(width=52)
+website_entry = Entry(width=33)
 #places the website entry in row 1 column 1 with a columnspan of 2 (2 "cells")
-website_entry.grid(row=1, column=1, columnspan=2)
+website_entry.grid(row=1, column=1,)
 #places the cursor on the website entry line
 website_entry.focus()
 
@@ -92,6 +133,9 @@ password_entry.grid(row=3,column=1)
 #creates the generate button with and it says "generate password" on the button
 generate_password_button = Button(text='Generate Password', command=generate_new_pw)
 generate_password_button.grid(row=3,column=2)
+
+search_button = Button(text='Search', width=14, command=search)
+search_button.grid(row=1,column=2)
 
 add_button = Button(text='Add',width=44,command=save_data)
 add_button.grid(row=4,column=1, columnspan=2)
