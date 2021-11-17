@@ -41,4 +41,6 @@ def generate_phonetic():
             generate_phonetic()
         else:
             print(phonetic_list)
+
+generate_phonetic()
     
