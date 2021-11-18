@@ -1,7 +1,8 @@
+from email import message
 from tkinter import *
 import requests
 from datetime import date, datetime
-
+import smtplib
 
 # def get_quote():
 #     response = requests.get('https://api.kanye.rest/')
@@ -26,22 +27,23 @@ from datetime import date, datetime
 
 # window.mainloop()
 
-
+my_email = 'kevinlearningpython@gmail.com'
+my_password = '5426233Kk!!'
 MY_LAT = 33.745472
 MY_LONG = -117.867653
-
+long_lat = MY_LONG,MY_LAT
 time_now = datetime.now()
-print(time_now.hour)
 
 
-# response = requests.get('http://api.open-notify.org/iss-now.json')
 
-# data = response.json()
+response = requests.get('http://api.open-notify.org/iss-now.json')
 
-# lng = data['iss_position']['longitude']
-# lat = data['iss_position']['latitude']
+data = response.json()
 
-#iss_position = (lng,lat)
+lng = float(data['iss_position']['longitude'])
+lat = float(data['iss_position']['latitude'])
+
+iss_position = (lng,lat)
 
 parameters = {
     'lat':MY_LAT,
@@ -53,12 +55,17 @@ response = requests.get(f'https://api.sunrise-sunset.org/json',params=parameters
 response.raise_for_status()
 data = response.json()
 
-sunrise = data['results']['sunrise'].split('T')[1].split(':')[0]
-sunset = data['results']['sunset'].split('T')[1].split(':')[0]
+sunrise = int(data['results']['sunrise'].split('T')[1].split(':')[0])
+sunset = int(data['results']['sunset'].split('T')[1].split(':')[0])
 
+print(data)
 
-print(f'{sunrise} //// {sunset}')
-
+# if int(lat) in range(int(MY_LAT-10),int(MY_LAT+10)) and int(lng) in range(int(MY_LONG-10),int(MY_LONG+10)):
+#     if time_now.hour == sunset:
+#         with smtplib.SMTP('smtp.gmail.com', port=587) as connection:
+#             connection.starttls()
+#             connection.login(my_email,my_password)
+#             connection.sendmail(from_addr=my_email,to_addrs='kevincarrillo89@yahoo.com',msg='Subject:LOOK UP!\n\nLOOK UP THE ISS IS NEAR YOU')
 
 
 
