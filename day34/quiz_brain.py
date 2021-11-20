@@ -16,15 +16,21 @@ class QuizBrain:
         self.question_number += 1
         q_text = html.unescape(self.current_question.text)
         # user_answer = input(f"Q.{self.question_number}: {q_text} (True/False): ")
-        return q_text
+        return f"Q.{self.question_number}: {q_text}"
 
     def check_answer(self, user_answer):
-        correct_answer = self.current_question.correct_answer
+        correct_answer = self.current_question.answer
+        print(correct_answer)
         if user_answer == correct_answer:
             self.score += 1
-            print("You got it right!")
+            # print(f"Your current score is: {self.score}/{self.question_number}")
+            # print("\n")
+            # print("You got it right!")
+            return True
         else:
-            print("That's wrong.")
+            # print(f"Your current score is: {self.score}/{self.question_number}")
+            # print("\n")
+            # print("That's wrong.")
+            return False
 
-        print(f"Your current score is: {self.score}/{self.question_number}")
-        print("\n")
+        
