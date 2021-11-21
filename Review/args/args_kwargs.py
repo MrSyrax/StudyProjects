@@ -8,7 +8,7 @@ def add(*args):
 # add(1,2,3,4,5)
 
 def print_kwargs(**kwargs):
-    print(f"{kwargs['name']} {kwargs['lname']}")
+    print(f"{kwargs.get('name')} {kwargs.get('lname')}")
 
 # print_kwargs(name='Kevin',lname='Carrillo')
 

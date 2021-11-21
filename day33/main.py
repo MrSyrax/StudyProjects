@@ -51,6 +51,8 @@ parameters = {
     'formatted':0
 }
 
+
+
 response = requests.get(f'https://api.sunrise-sunset.org/json',params=parameters)
 response.raise_for_status()
 data = response.json()
@@ -58,14 +60,12 @@ data = response.json()
 sunrise = int(data['results']['sunrise'].split('T')[1].split(':')[0])
 sunset = int(data['results']['sunset'].split('T')[1].split(':')[0])
 
-print(data)
-
-# if int(lat) in range(int(MY_LAT-10),int(MY_LAT+10)) and int(lng) in range(int(MY_LONG-10),int(MY_LONG+10)):
-#     if time_now.hour == sunset:
-#         with smtplib.SMTP('smtp.gmail.com', port=587) as connection:
-#             connection.starttls()
-#             connection.login(my_email,my_password)
-#             connection.sendmail(from_addr=my_email,to_addrs='kevincarrillo89@yahoo.com',msg='Subject:LOOK UP!\n\nLOOK UP THE ISS IS NEAR YOU')
+if int(lat) in range(int(MY_LAT-10),int(MY_LAT+10)) and int(lng) in range(int(MY_LONG-10),int(MY_LONG+10)):
+    if time_now.hour >= sunset or time_now.hour <= sunrise:
+        with smtplib.SMTP('smtp.gmail.com', port=587) as connection:
+            connection.starttls()
+            connection.login(my_email,my_password)
+            connection.sendmail(from_addr=my_email,to_addrs='kevincarrillo89@yahoo.com',msg='Subject:LOOK UP!\n\nLOOK UP THE ISS IS NEAR YOU')
 
 
 
