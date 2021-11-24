@@ -1,9 +1,5 @@
-from types import CellType
 import requests
 from decouple import config
-import json
-from datetime import datetime as dt
-from requests.api import head
 from twilio.rest import Client
 
 
@@ -13,7 +9,6 @@ stocks_api_k = config('KEY_FOR_STOCKS')
 news_api_k = config('KEY_FOR_NEWS')
 twilio_key = config('auth_token')
 twilio_sid = config('account_sid')
-client = Client(twilio_sid,twilio_key)
 news_endpoint = 'https://newsapi.org/v2/everything'
 headline = []
 brief = []
@@ -36,38 +31,36 @@ stock_data = data.json()['Time Series (Daily)']
 stock_data_list = [value for (key,value) in stock_data.items()]
 yesterday_data = stock_data_list[0]
 yesterady_closing_price = yesterday_data['4. close']
+
 day_before_yesterday_data = stock_data_list[1]
 day_before_yesterday_closing_price = day_before_yesterday_data['4. close']
 
-difference = abs(float(yesterady_closing_price) - float(day_before_yesterday_closing_price))
-difference_percet = (difference/float(yesterady_closing_price))*100
+difference = float(yesterady_closing_price) - float(day_before_yesterday_closing_price)
 
-news_params = {
-    'apiKey':news_api_k,
-    'qInTitle': COMPANY_NAME
-}
+up_or_down = None
+if difference > 0:
+    up_or_down = '🔺'
+else:
+    up_or_down = '🔻'
+    
+difference_percet = (abs(difference)/float(yesterady_closing_price))*100
 
-news = requests.get(news_endpoint, params=news_params)
-articles = news.json()['articles'][:3]
-msg = [f"Headline: {article['title']}.\nBrief: {article['description']}" for article in articles]
 
 
 if difference_percet > 3:
+    news_params = {
+    'apiKey':news_api_k,
+    'qInTitle': COMPANY_NAME
+    }
+
     news = requests.get(news_endpoint, params=news_params)
     articles = news.json()['articles'][:3]
-    msg = [f"TSLA:🔺{round(difference_percet, 2)}%\nHeadline: {article['title']}.\nBrief: {article['description']}" for article in articles]
-    message = client.messages.create(body=msg, from_='+12565988358',to='+17145925544')
+    msg = [f"TSLA:{up_or_down} {round(difference_percet, 2)}%\nHeadline: {article['title']}.\nBrief: {article['description']}" for article in articles]
+    client = Client(twilio_sid,twilio_key)
 
-elif difference_percet < 3:
-    news = requests.get(news_endpoint, params=news_params)
-    articles = news.json()['articles'][:3]
-
-    title = [n['title'] for n in articles]
-    description = [n['description'] for n in articles]
-    message = f'TSLA: 🔻 {round(difference_percet, 2)}%\nHeadline: {title[0]}\nBrief: {description[0]}'
-    msg = client.messages.create(body=message,from_='+12565988358',to='+17145925544')
-
-
-#🔻
-#🔺
+    for messages in msg:
+        client.messages.create(
+            body=messages, 
+            from_='+12565988358', 
+            to='+17145925544')
 
