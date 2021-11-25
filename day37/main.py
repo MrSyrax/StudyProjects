@@ -73,7 +73,7 @@ headers = {
 # print(resposne.text)
 
 
-
+#post
 pixel_creation_endpoint = f'{graph_endpoint}/{GRAPH}'
 
 update_params = {
@@ -84,14 +84,17 @@ update_params = {
 # resposne = requests.post(url=pixel_creation_endpoint, json=update_params, headers=headers)
 # print(resposne.text)
 
+#Put
 pixel_update_endpoint = f'{pixel_creation_endpoint}/20211122'
 
 update_pixel_params = {
     'quantity':'5'
 }
 
+
 # resposne = requests.put(url=pixel_update_endpoint,json=update_pixel_params,headers=headers)
 # print(resposne.text)
 
+#Delete 
 response = requests.delete(url = pixel_update_endpoint, headers=headers)
 print(response.text)
