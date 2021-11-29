@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 
 sheet_info = DataManager()
 flight_info = FlightSearch()
+notifications=NotificationManager()
 
 #pull in the sheet data and assign it to a variable named sheet_data
 sheet_data = sheet_info.get_sheet_data()
@@ -29,10 +30,20 @@ for row in sheet_data:
     location_code = 'LON'
     destination_code = row['iataCode']
 
-    flight_info.check_flights(location_code,destination_code,tomorow,six_months_from_now)
-
-
-
+    price_check = flight_info.check_flights(location_code,destination_code,tomorow,six_months_from_now)
+    try:
+        if price_check.price < row['lowestPrice']:
+            notifications.check_prices(
+                price_check.price,
+                price_check.origin_city,
+                price_check.origin_aiport,
+                price_check.destination_city,
+                price_check.destination_aiport,
+                price_check.out_date,
+                price_check.return_date
+            )
+    except AttributeError:
+        pass
 
 
 

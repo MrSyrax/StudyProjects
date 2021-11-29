@@ -32,9 +32,3 @@ class DataManager:
             }
             requests.put(url=f'{URL}/{id}',json=new_data)
 
-
-
-
-
-
-
