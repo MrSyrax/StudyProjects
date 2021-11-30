@@ -1,4 +1,5 @@
 import json
+from typing import Type
 from decouple import config
 import requests
 from requests.api import request
@@ -47,9 +48,25 @@ class FlightSearch:
 
         try:
             data = response.json()['data'][0]
-        except IndexError:   
-            print(f'No flights found for {city_code}')
-            return None
+        except IndexError:
+            try:
+                query={
+                'fly_from':origin_city_code,
+                'fly_to': city_code,
+                'date_from':date_tomorrow.strftime('%d/%m/%Y'),
+                'date_to':date_6months.strftime('%d/%m/%Y'),
+                'nights_in_dst_from':7,
+                'nights_in_dst_to':28,
+                'flight_type':'round',
+                'one_for_city':1,
+                'max_stopovers':3,
+                'curr':'USD'
+                }   
+                data = response = requests.get(url=f'{KIWI_ENDPOINT}/v2/search',headers=header,params=query)   
+                data = response.json()['data'][0]
+            except IndexError:
+                print(f'No flights found for {city_code}')
+                return None
         
         flight_data = FlightData(
             price=data['price'],
