@@ -50,34 +50,32 @@ class FlightSearch:
             data = response.json()['data'][0]
         except IndexError:
             try:
-                query={
-                'fly_from':origin_city_code,
-                'fly_to': city_code,
-                'date_from':date_tomorrow.strftime('%d/%m/%Y'),
-                'date_to':date_6months.strftime('%d/%m/%Y'),
-                'nights_in_dst_from':7,
-                'nights_in_dst_to':28,
-                'flight_type':'round',
-                'one_for_city':1,
-                'max_stopovers':3,
-                'curr':'USD'
-                }   
+                query['max_stopovers']=1  
                 data = response = requests.get(url=f'{KIWI_ENDPOINT}/v2/search',headers=header,params=query)   
                 data = response.json()['data'][0]
+
+                flight_data = FlightData(
+                price=data['price'],
+                origin_city=data['cityFrom'],
+                origin_aiport=data['route'][0]['flyFrom'],
+                destination_city=data['cityTo'],
+                destination_airport=data['route'][0]['flyTo'],
+                out_date=data['route'][0]['local_departure'].split('T')[0],
+                return_date=data['route'][1]['local_departure'].split('T')[0],
+                stop_overs=1,
+                via_city=data['route'][0]['cityTo']
+                )
+                return flight_data
             except IndexError:
-                print(f'No flights found for {city_code}')
-                return None
-        
-        flight_data = FlightData(
-            price=data['price'],
-            origin_city=data['cityFrom'],
-            origin_aiport=data['route'][0]['flyFrom'],
-            destination_city=data['cityTo'],
-            destination_airport=data['route'][0]['flyTo'],
-            out_date=data['route'][0]['local_departure'].split('T')[0],
-            return_date=data['route'][1]['local_departure'].split('T')[0]
-        )
-
-        print(f'{flight_data.destination_city}: ${flight_data.price}')
-
-        return flight_data
+                print('there are no flights for that ID')
+        else:
+            flight_data = FlightData(
+                price=data['price'],
+                origin_city=data['cityFrom'],
+                origin_aiport=data['route'][0]['flyFrom'],
+                destination_city=data['cityTo'],
+                destination_airport=data['route'][0]['flyTo'],
+                out_date=data['route'][0]['local_departure'].split('T')[0],
+                return_date=data['route'][1]['local_departure'].split('T')[0]
+            )
+            return flight_data

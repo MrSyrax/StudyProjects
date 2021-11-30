@@ -40,7 +40,9 @@ for row in sheet_data:
                 price_check.destination_city,
                 price_check.destination_aiport,
                 price_check.out_date,
-                price_check.return_date
+                price_check.return_date,
+                price_check.stop_overs,
+                price_check.stop_overs
             )
     except AttributeError:
         pass
