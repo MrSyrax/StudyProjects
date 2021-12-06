@@ -22,7 +22,6 @@ def generate_new_pw():
    
     shuffle(password_list)
 
-   
     password = ''.join(password_list)
 
     entry_field = password_entry.get()
