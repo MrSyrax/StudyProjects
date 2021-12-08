@@ -5,6 +5,5 @@ with open("day45 - web scraping/website.html", encoding="utf8") as file:
 
 soup = BeautifulSoup(contents, 'html.parser')
 
-anchor_tags = soup.find_all(name='a')
-
-print(len(anchor_tags))
+print(soup.title)
+print(soup.title.name)
