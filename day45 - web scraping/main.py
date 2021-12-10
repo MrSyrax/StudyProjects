@@ -6,6 +6,7 @@ url = 'https://news.ycombinator.com/'
 response = requests.get(url)
 yc_web_page = response.text
 
+<<<<<<< HEAD
 soup = BeautifulSoup(yc_web_page, 'html.parser')
 
 titlelink = soup.find_all(name='a', class_='titlelink')
@@ -69,3 +70,7 @@ print(max_upvote)
 
 # for h in heading:
 #     print(h.getText())
+=======
+print(soup.title)
+print(soup.title.name)
+>>>>>>> 4369aa48ff230be44f11d94a07ce3a1f83c958c8
