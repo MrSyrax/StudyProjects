@@ -28,13 +28,12 @@ while typed_correctly:
 URL = f'https://www.billboard.com/charts/hot-100/{date}/'
 
 response = requests.get(URL)
-
 soup = BeautifulSoup(response.text, 'html.parser')
-
-top_1 = soup.find('li', class_="lrv-u-width-100p")
-
 song_list = []
 artist_names = []
+
+
+top_1 = soup.find('li', class_="lrv-u-width-100p")
 song_list.append(top_1.select('h3')[0].getText().strip())
 artist_names.append(top_1.select('span')[0].getText().strip())
 
@@ -64,9 +63,6 @@ for index,song in enumerate(song_list, 0):
         print(f"{song} does't exist in Spotify, Skipped")
 
 play_list = sp.user_playlist_create(user=user_name,name=f'{year}-{month}-{day} Billboard 100', public=False, collaborative=False,description='top 100 playlist for the year serached')
-    
-
-pprint(play_list)
 
 sp.playlist_add_items(playlist_id=play_list['id'], items=song_uri)
 
