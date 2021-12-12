@@ -18,11 +18,9 @@ chair_ratings_container = soup.find(id='bylineInfo')
 
 chair_ratings_link = chair_ratings_container.get('href')
 
-link = f'https://www.amazon.com/{chair_ratings_link}'
+link = f'https://www.amazon.com{chair_ratings_link}'
 print(link)
 
 chair_price_container = soup.find(id='corePrice_desktop')
 print(chair_price_container.span.span.get_text())
 
-
-#averageCustomerReviews_feature_div
