@@ -19,7 +19,7 @@ driver.get("https://www.python.org/")
 # price = float(span.text.split('$')[1])
 
 
-# #-------------------------------------------------------------------------#
+#-------------------------------------------------------------------------#
 
 time = driver.find_elements(By.CSS_SELECTOR,'.event-widget time')
 title = driver.find_elements(By.CSS_SELECTOR,'.event-widget a')
@@ -40,6 +40,7 @@ for titles in title:
 
 print(events)
 
-# #-----------------------------------------------------------------------#
+#-----------------------------------------------------------------------#
 
 driver.quit()
+
