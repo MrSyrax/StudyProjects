@@ -22,21 +22,16 @@ driver.get("https://www.python.org/")
 #-------------------------------------------------------------------------#
 
 time = driver.find_elements(By.CSS_SELECTOR,'.event-widget time')
-title = driver.find_elements(By.CSS_SELECTOR,'.event-widget a')
+title = driver.find_elements(By.CSS_SELECTOR,'.event-widget li a')
 
 events = {}
-counter = 0
-for times in time:
-    x =times.get_attribute('datetime')
-    events[counter]={'time': x.split('T')[0]}
-    counter+=1
+for n in range(len(time)):
+    t = time[n].get_attribute('datetime')
+    events[n] = {
+        'time': t.split('T')[0],
+        'name': title[n].text
+    }
 
-
-new_counter = 0  
-for titles in title:
-    if titles.text != 'More':
-        events[new_counter]['name'] = titles.text
-        new_counter+=1
 
 print(events)
 

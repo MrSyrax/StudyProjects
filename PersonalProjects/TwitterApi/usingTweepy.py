@@ -1,10 +1,15 @@
 from requests_oauthlib import OAuth1Session
 from credentials import Credentials
 import json
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 # In your terminal please set your environment variables by running the following lines of code.
 # export 'CONSUMER_KEY'='<your_consumer_key>'
 # export 'CONSUMER_SECRET'='<your_consumer_secret>'
+
+# driver_path = "c:/Development/chromedriver.exe"
+# driver = webdriver.Chrome(executable_path=driver_path)
 
 consumer_key = Credentials.api_key
 consumer_secret = Credentials.api_secret
@@ -28,10 +33,12 @@ except ValueError:
 resource_owner_key = fetch_response.get("oauth_token")
 resource_owner_secret = fetch_response.get("oauth_token_secret")
 print("Got OAuth token: %s" % resource_owner_key)
-
 # Get authorization
 base_authorization_url = "https://api.twitter.com/oauth/authorize"
 authorization_url = oauth.authorization_url(base_authorization_url)
+# driver.get(authorization_url)
+# button_to_click = driver.find_element(By.XPATH, '//*[@id="allow"]')
+# button_to_click.click()
 print("Please go here and authorize: %s" % authorization_url)
 verifier = input("Paste the PIN here: ")
 
