@@ -44,6 +44,7 @@ for l in links:
     else:
         link_list.append(ls) 
 
+
 #grab all of the addresses from zillow
 all_addresses = soup.select(".list-card-info address")
 #grab all of the text from the element
