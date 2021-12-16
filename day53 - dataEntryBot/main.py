@@ -1,4 +1,4 @@
-from os import name
+from os import link, name
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -39,5 +39,14 @@ response = requests.get(URL_FOR_ZILLOW, headers=headers)
 funsies = response.text
 soup = BeautifulSoup(funsies, 'html.parser')
 links = soup.select(".list-card-top a")
+
+link_list = []
 for l in links:
-    print(l)
+    ls = l.get('href')
+    if 'https://' not in ls:
+        link_list.append('https://www.zillow.com'+ ls)
+    else:
+        link_list.append(ls) 
+
+print(len(link_list))
+
