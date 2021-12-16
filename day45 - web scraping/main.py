@@ -5,19 +5,20 @@ import requests
 response = requests.get('https://web.archive.org/web/20200518073855/https://www.empireonline.com/movies/features/best-movies-2/')
 empire_web_page = response.text
 soup = BeautifulSoup(empire_web_page, 'html.parser')
+print(empire_web_page)
 
-top_100 = soup.find_all(name='h3',class_='title')
-top_100_reversed = top_100[::-1]
-titles = [h3.getText() for h3 in top_100_reversed]
+# top_100 = soup.find_all(name='h3',class_='title')
+# top_100_reversed = top_100[::-1]
+# titles = [h3.getText() for h3 in top_100_reversed]
 
-try:
-    with open('day45 - web scraping/top_100.txt', 'a') as file:
-        for h3 in titles:
-            file.write(f'{h3}\n')
-except FileNotFoundError:
-    with open('day45 - web scraping/top_100.txt', 'w') as file:
-         for h3 in titles:
-            file.write(f'{h3}\n')
+# try:
+#     with open('day45 - web scraping/top_100.txt', 'a') as file:
+#         for h3 in titles:
+#             file.write(f'{h3}\n')
+# except FileNotFoundError:
+#     with open('day45 - web scraping/top_100.txt', 'w') as file:
+#          for h3 in titles:
+#             file.write(f'{h3}\n')
 
 
 #------------------------------FIRST WEBSITE SCRAPED----------------#

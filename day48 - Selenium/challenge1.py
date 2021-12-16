@@ -63,7 +63,7 @@ while True:
       #for every cost and id in cookie_upgrades dictionary
       for cost, id in cookie_upgrades.items():
          #check if the current cookie count is greater than the cost
-         if cookie_count >cost:
+         if cookie_count > cost:
             #if it is then make add that cost and id to the 
             #affordable_upgarades dict as cost:id
             affordable_upgrades[cost]=id
@@ -81,7 +81,7 @@ while True:
       check_timer = time.time() + 5
 
    if time.time() > time_out:
-      cookie_per_sec = driver.find_element(By.ID,'cps')
+      cookie_per_sec = driver.find_element(By.ID,'cps').text
       print(cookie_per_sec)
       break
 

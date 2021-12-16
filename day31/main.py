@@ -30,6 +30,7 @@ def next_card():
 
 def is_known():
     word_dict.remove(random_word)
+    print(word_dict)
     data = pandas.DataFrame(word_dict)
     data.to_csv("C:/Users/karey/Documents/Python/day31/data/words_to_learn.csv", index=False)
     next_card()
