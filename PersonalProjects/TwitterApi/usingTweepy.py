@@ -101,10 +101,10 @@ response = oauth.post(
 
 if response.status_code != 201:
     raise Exception(
-        "Request returned an error: {} {}".format(response.status_code, response.text)
+        f"Request returned an error: {response.status_code} {response.text}"
     )
 
-print("Response code: {}".format(response.status_code))
+print(f"Response code: {response.status_code}")
 
 # Saving the response as JSON
 json_response = response.json()
