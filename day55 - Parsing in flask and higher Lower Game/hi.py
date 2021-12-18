@@ -2,6 +2,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
+
 def bold_decorator(function):
     def wf():
         text = function()
@@ -10,25 +11,24 @@ def bold_decorator(function):
 
 def em_decorator(function):
     def wf():
-        return f'<em>{function()}</em>'
+        text = function()
+        return f'<em>{text}</b>'
     return wf
 
 def under_decorator(function):
     def wf():
-        return f'<u>{function()}</u>'
+        text = function()
+        return f'<u>{text}</u>'
     return wf
 
-@app.route("/")
+
+
+@app.route('/bye')
 @bold_decorator
 @em_decorator
 @under_decorator
-def hello_world():
-    return "<p>Hello, World!</p>"
+def bye():
+    return 'Bye!'
 
-@app.route('/<user>/<int:number>')
-def user_number(user,number):
-    return f'Hello {user}, you are number: {number}'
-
-    
 if __name__ == '__main__':
     app.run(debug=True)
