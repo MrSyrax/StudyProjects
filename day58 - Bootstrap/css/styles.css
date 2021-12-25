@@ -1,9 +1,10 @@
 #title {
-    background-color: #ff4c68;
-   
+    background-color: #ff4c68;   
 }
+
 body {
     font-family: 'Montserrat';
+    margin: 0;
 }
 
 /* Navigation Bar */
@@ -29,7 +30,7 @@ body {
 }
 
 .container-fluid {
-    padding: 3% 15%;
+    padding: 3% 15% 15%;
 }
 
 #main_txt {
@@ -61,9 +62,18 @@ h2 {
 .main_doggi {
     width: 60%;
     transform: rotate(25deg);
+    position: absolute;
+    right: 25%
 }
 
 /* Features */
+
+.features-section {
+    background-color: white;
+    position: relative;
+    
+}
+
 #features {
     text-align: center;
     padding: 7% 15%;
@@ -100,6 +110,8 @@ h2 {
     background-color: #ef8172;
     text-align: center;
     color: white;
+    /* position: absolute;
+    margin-top: 85rem; */
 }
 
 .carousel-item {
@@ -115,7 +127,10 @@ h2 {
 #press {
     text-align: center;
     background-color: #ef8172;
-    padding-bottom: 3%;
+    width: 100%;
+    /* position: absolute;
+    margin-top: 117rem;
+    padding-bottom: 3%; */
 }
 
 .press-img {
@@ -125,10 +140,12 @@ h2 {
 
 
 /* pricing section */
-
 #pricing {
     text-align: center;
     padding: 100px;
+    width: 100%;
+    /* position:absolute;
+    margin-top: 130rem; */
 }
 
 .pricing-column {
@@ -138,3 +155,32 @@ h2 {
 .pricing-card {
     width: 100%;
 }
+
+/* bottom sections */
+
+#cta {
+    text-align: center;
+    background-color: #ef8172;
+    padding:30px;
+    width: 100%;
+    /* position: absolute;
+    margin-top: 175rem; */
+}
+
+.download-button-bottom {
+    margin: 2rem 0 2rem 0;
+}
+
+.h3-cta {
+    font-weight: 900;
+    color: white;
+}
+
+.p-cta {
+    color: white;
+    /* position: absolute;
+    margin-top: 185rem;
+    margin-left: 30px; */
+}
+
+
