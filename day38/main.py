@@ -29,7 +29,6 @@ response = requests.post(url=exercise_endpoint,json=body,headers=headers)
 new_dict = response.json()
 
 
-
 #--------------------------------Manipulating Google Doc-------------------------------------------------#
 now = dt.now()
 time = now.strftime('%X %p')
