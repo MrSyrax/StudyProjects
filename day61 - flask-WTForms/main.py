@@ -1,5 +1,5 @@
-from re import L
 from flask import Flask, render_template
+from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField , PasswordField
 from wtforms.fields.simple import SubmitField
@@ -11,7 +11,9 @@ class MyForm(FlaskForm):
     password = PasswordField(label='Password' , validators=[DataRequired(), Length(min=8)])
     submit = SubmitField(label='Log In')
 
+
 app = Flask(__name__)
+Bootstrap(app)
 app.secret_key = 'chickens'
 
 

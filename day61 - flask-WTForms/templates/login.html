@@ -1,14 +1,16 @@
-<!DOCTYPE HTML>
+{%extends 'bootstrap/base.html'%}
+{% import "bootstrap/wtf.html" as wtf %}
 
-<html>
-	<head>
-		<title>Login</title>
-	</head>
-	<body>
+{%block title%}
+Success
+{%endblock%}
+
+{%block content%}
         <div class="container">
 		<h1>Login</h1>
         <!-- This is where our form will go. -->
-		<form method="POST" action="{{ url_for('login') }}" novalidate>
+		<!-- we can use this for notes at a later point do not delete -->
+		<!-- <form method="POST" action="{{ url_for('login') }}" novalidate>
 			{{ form.csrf_token }}
 			<p>
 				{{ form.email.label }} <br> {{ form.email(size=30) }}
@@ -23,7 +25,9 @@
 				{% endfor %}
 			</p>
 			{{form.submit}}
-		</form>
+		</form> -->
+		{{ wtf.quick_form(form, novalidate=True) }}
         </div>
-	</body>
-</html>
+
+		
+{%endblock%}

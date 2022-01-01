@@ -1,9 +1,9 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-	<title>Secrets</title>
-</head>
-<body>
+{%extends 'bootstrap/base.html'%}
+{%block title%}
+Secrets
+{%endblock%}
+
+{%block content%}
 <div class="jumbotron">
 	<div class="container">
 		<h1>Welcome</h1>
@@ -11,5 +11,4 @@
 		<a href="{{url_for('login')}}"><button>Login</button></a>
 	</div>
 </div>
-</body>
-</html>
+{%endblock%}
