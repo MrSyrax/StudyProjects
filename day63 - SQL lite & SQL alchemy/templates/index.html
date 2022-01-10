@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RC IS LIFE</title>
+</head>
+<body>
+<h1>Ownder RC Cars</h1>
+    <ul>
+       {%for car in all_cars%}
+        <li>
+            <a href="{{url_for('delete', id=car['id'])}}">Delete</a>
+            Chassis: {{car['chassis']}} - What you use it for: {{car['used_for']}} - Rating: {{car['rating']}} 
+            <a href="{{url_for('edit_rating',id=car['id'])}}">Edit Rating</a>
+        </li>
+        {%endfor%}
+    </ul>
+    
+<a href="{{url_for('add')}}">Add New Car</a>
+</body>
+</html>

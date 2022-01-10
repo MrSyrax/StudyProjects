@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Book</title>
+</head>
+<body>
+    <form action="{{url_for('add')}}" method="POST">
+        <label>Chassis</label>
+        <input name='chassis' type="text">
+        <label>Used For?</label>
+        <input name='use' type="text">
+        <label>Rating</label>
+        <input name='rating' type="text">
+        <button type="submit">Add Car</button>
+    </form>
+    <a href="{{url_for('home')}}"><button>Home Page</button></a>
+</body>
+</html>

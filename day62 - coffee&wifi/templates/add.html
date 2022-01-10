@@ -14,9 +14,58 @@
 
       <h1>Add a new cafe into the database</h1>
 
-      <!-- This is where your WTForm will go -->
+      <form method="POST" action="{{ url_for('add_cafe') }}" novalidate>
+        {{ form.csrf_token }}
+        <p class='form-label'>{{ form.cafe.label }} </p>
+        <p>{{ form.cafe(size=60) }} </p>
 
-	  <p class="space-above"><a href="#">See all cafes</a></p>
+        <p class='form-label'>{{ form.Cafe_location.label }}</p>
+        <p>{{ form.Cafe_location(size=60) }}
+          {%for err in form.Cafe_location.errors%}
+				    <span >{{err}}</span>
+				  {% endfor %}
+        </p>
+
+        <p class='form-label'>{{ form.Cafe_open.label }}</p>
+        <p>{{ form.Cafe_open(size=60)}}
+          {%for err in form.Cafe_open.errors%}
+          <span style='color:red;'>{{err}}</span>
+          {%endfor%}
+        </p>
+
+        <p class='form-label'>{{ form.Cafe_close.label }}</p>
+        <p>{{ form.Cafe_close(size=60)}} 
+          {%for err in form.Cafe_close.errors%}
+            <span style='color:red;'>{{err}}</span>
+          {%endfor%}
+        </p>
+
+        <p class='form-label'>{{ form.coffee_strength.label }}</p>
+        <p class='form-selection'>{{ form.coffee_strength(size=1)}}
+          {%for err in form.coffee_strength.errors%}
+            <span style='color:red;'>{{err}}</span>
+          {%endfor%}
+        </p>
+
+        <p class='form-label'>{{ form.Cafe_wifi_strength.label }}</p>
+        <p class='form-selection'>{{ form.Cafe_wifi_strength(size=1)}}
+          {%for err in form.Cafe_wifi_strength.errors%}
+            <span style='color:red;'>{{err}}</span>
+          {%endfor%}
+        </p>
+
+        <p class='form-label'>{{ form.power_sockets.label }}</p>
+        <p class='form-selection'>{{ form.power_sockets(size=1)}}
+          {%for err in form.power_sockets.errors%}
+            <span style='color:red;'>{{err}}</span>
+          {%endfor%}
+        </p>
+
+        <p id='submit-button'>{{form.submit}}</p>
+        
+      </form>
+
+	  <p class="space-above"><a href="{{url_for('cafes')}}">See all cafes</a></p>
 
     </div>
   </div>

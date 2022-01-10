@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Cars</title>
+</head>
+<body>
+    <form action="{{url_for('edit_rating')}}" method="POST">
+        <h1>Chassis: {{car_rating['chassis']}}</h1>
+        <h2>Used For: {{car_rating['used_for']}}</h2>
+        <h2>Current Rating: {{car_rating['rating']}}</h2>
+        <input hidden="hidden" name='id' value="{{car_rating['id']}}">
+        <input name='rating' type="text" placeholder="New Rating">
+        <button type="submit">Change Rating</button>
+    </form>
+</body>
+</html>
