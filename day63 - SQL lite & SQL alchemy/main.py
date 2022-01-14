@@ -11,8 +11,8 @@ db = SQLAlchemy(app)
 
 class Cars(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    chassis = db.Column(db.String, nullable=False)
-    used_for = db.Column(db.String, unique=True, nullable=False)
+    chassis = db.Column(db.String(250), nullable=False)
+    used_for = db.Column(db.String(250), unique=True, nullable=False)
     rating = db.Column(db.Float, nullable=False)
     
     def __repr__(self):
@@ -46,6 +46,7 @@ def edit_rating():
         db.session.commit()
         return redirect(url_for('home'))
     car_id = request.args.get('id')
+    print(car_id)
     car_to_edit = Cars.query.get(car_id)
     return render_template('edit.html', car_rating=car_to_edit)
 
